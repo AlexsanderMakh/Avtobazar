@@ -1,30 +1,43 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <CarDetails :car="car" />
+  </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import CarDetails from './components/CarDetail.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    CarDetails
+  },
+  setup() {
+    const car = ref({
+      name: 'Ford Edge 2016',
+      code: '40845',
+      location: 'Львов',
+      price: 62490, // price in USD
+      creditPrice: 'от 511$/мес',
+      details: ['ГРН', 'USD', 'EUR', 'crypto'],
+      creditDescription: '*Ежемесячный платеж носит информационный характер и может меняться на момент получения детального расчета. *Возможна оплата криптовалютой',
+      tags: ['Все авто', 'Официальное авто', 'Авто с Европы'],
+      publicationDate: '14.12.2023'
+    });
+
+    return { car };
+  }
+});
+</script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+*{
+  font-family: Proxima Nova Condensed;
 }
 </style>
